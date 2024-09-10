@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace PermissionsApp.Server.Controllers
+namespace PermissionsApp.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

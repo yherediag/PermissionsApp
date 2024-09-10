@@ -1,4 +1,4 @@
-namespace PermissionsApp.Server
+namespace PermissionsApp.API
 {
     public class WeatherForecast
     {
