@@ -7,7 +7,7 @@ using PermissionsApp.Domain.Primitives;
 namespace PermissionsApp.Application.EventHandlers;
 
 public class RemovePermissionEventHandler(ILogger<RemovePermissionEventHandler> logger,
-                                            IEventBus bus) : INotificationHandler<RemovePermissionEvent>
+                                          IEventBus bus) : INotificationHandler<RemovePermissionEvent>
 {
     private readonly ILogger<RemovePermissionEventHandler> _logger = logger;
     private readonly IEventBus _bus = bus;

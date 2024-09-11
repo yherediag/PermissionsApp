@@ -1,7 +1,7 @@
 ﻿using Confluent.Kafka;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace PermissionsApp.API.HealthChecks;
+namespace PermissionsApp.Server.HealthChecks;
 
 public class KafkaHealthCheck(IConfiguration configuration) : IHealthCheck
 {

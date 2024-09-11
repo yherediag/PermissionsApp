@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PermissionsApp.Application.Queries.GetPermissionsType;
 
-namespace PermissionsApp.API.Controllers
+namespace PermissionsApp.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

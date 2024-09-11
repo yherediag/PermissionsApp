@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PermissionsApp.Domain.Exceptions;
+using PermissionsApp.Server.ExceptionHandlers;
 
-namespace PermissionsApp.API.ExceptionHandlers;
+namespace PermissionsApp.Server.ExceptionHandlers;
 
 public class BadRequestExceptionHandler(ILogger<BadRequestExceptionHandler> logger) : IExceptionHandler
 {

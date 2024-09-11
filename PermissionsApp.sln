@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.UnitTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.IntegrationTests", "tests\PermissionsApp.IntegrationTests\PermissionsApp.IntegrationTests.csproj", "{88AC1E03-793F-4871-95DD-7008F4CB16AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.API", "src\PermissionsApp.Server\PermissionsApp.API.csproj", "{DA16E19D-2008-409F-9FA0-A724B6E3252B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.Server", "src\PermissionsApp.Server\PermissionsApp.Server.csproj", "{DA16E19D-2008-409F-9FA0-A724B6E3252B}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "client", "src\permissionsapp.client\client.esproj", "{49838C9B-EEF4-42AB-B765-5E99291A48BF}"
 EndProject

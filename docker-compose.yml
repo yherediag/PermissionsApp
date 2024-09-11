@@ -1,10 +1,10 @@
 services:
-  permissionsapp.api:
-    container_name: permissionsapp.api
+  permissionsapp.server:
+    container_name: permissionsapp.server
     image: ${DOCKER_REGISTRY-}permissionsappapi
     build:
-      context: .
-      dockerfile: src/PermissionsApp.Server/Dockerfile
+      context: ./src/PermissionsApp.Server
+      dockerfile: Dockerfile
     depends_on:
       permissionsapp.database:
         condition: service_healthy
@@ -70,6 +70,19 @@ services:
       - KAFKA_CLUSTERS_0_NAME=local
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+    networks:
+      - app-network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.1
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=SuperPassword123
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=false
+    ports:
+      - "9200:9200"
     networks:
       - app-network
 

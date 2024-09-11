@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
+using PermissionsApp.Application.DTOs;
+using PermissionsApp.Application.Services;
 using PermissionsApp.Domain.Events;
 using PermissionsApp.Domain.Exceptions;
 using PermissionsApp.Domain.Repositories;
@@ -12,10 +14,12 @@ public record ModifyPermissionCommand(int PermissionId,
                                    int? PermissionTypeId) : IRequest;
 
 public class ModifyPermissionHandler(IUnitOfWork uow,
-                                     IMapper mapper) : IRequestHandler<ModifyPermissionCommand>
+                                     IMapper mapper,
+                                     IElasticsearchService<ElasticPermission> elasticsearch) : IRequestHandler<ModifyPermissionCommand>
 {
     private readonly IUnitOfWork _uow = uow;
     private readonly IMapper _mapper = mapper;
+    private readonly IElasticsearchService<ElasticPermission> _elasticsearch = elasticsearch;
 
     public async Task Handle(ModifyPermissionCommand request, CancellationToken cancellationToken)
     {
@@ -29,5 +33,17 @@ public class ModifyPermissionHandler(IUnitOfWork uow,
         _uow.Permissions.Update(permission);
 
         await _uow.SaveChangesAsync(cancellationToken);
+
+        var elasticPermissionDto = new ElasticPermission(
+            permission.PermissionId,
+            permission.EmployeeName,
+            permission.EmployeeSurname,
+            permission.PermissionTypeId,
+            permission.CreatedDate,
+            permission.LastModifiedDate,
+            permission.DeletedDate,
+            permission.IsDeleted
+        );
+        await _elasticsearch.RequestOrModify(permission.PermissionId, elasticPermissionDto);
     }
 }

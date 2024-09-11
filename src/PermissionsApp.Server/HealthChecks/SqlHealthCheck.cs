@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace PermissionsApp.API.HealthChecks;
+namespace PermissionsApp.Server.HealthChecks;
 
 public class SqlHealthCheck(IConfiguration configuration) : IHealthCheck
 {

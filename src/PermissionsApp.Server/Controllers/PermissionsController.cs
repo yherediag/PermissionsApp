@@ -7,7 +7,7 @@ using PermissionsApp.Application.Queries.GetPermission;
 using PermissionsApp.Application.Queries.GetPermissions;
 using PermissionsApp.Domain.Exceptions;
 
-namespace PermissionsApp.API.Controllers
+namespace PermissionsApp.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

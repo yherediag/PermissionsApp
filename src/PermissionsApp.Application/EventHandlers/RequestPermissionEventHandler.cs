@@ -7,8 +7,7 @@ using PermissionsApp.Domain.Primitives;
 namespace PermissionsApp.Application.EventHandlers;
 
 public class RequestPermissionEventHandler(ILogger<RequestPermissionEventHandler> logger,
-                                           IEventBus bus) 
-    : INotificationHandler<RequestPermissionEvent>
+                                           IEventBus bus) : INotificationHandler<RequestPermissionEvent>
 {
     private readonly ILogger<RequestPermissionEventHandler> _logger = logger;
     private readonly IEventBus _bus = bus;

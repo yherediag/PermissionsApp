@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace PermissionsApp.API.Controllers
+namespace PermissionsApp.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

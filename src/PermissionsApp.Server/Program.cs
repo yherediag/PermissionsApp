@@ -1,12 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using PermissionsApp.API.ExceptionHandlers;
-using PermissionsApp.API.HealthChecks;
 using PermissionsApp.Application;
 using PermissionsApp.Infraestructure;
 using PermissionsApp.Infraestructure.ORM;
+using PermissionsApp.Server.ExceptionHandlers;
+using PermissionsApp.Server.HealthChecks;
 
-namespace PermissionsApp.API;
+namespace PermissionsApp.Server;
 
 public class Program
 {
