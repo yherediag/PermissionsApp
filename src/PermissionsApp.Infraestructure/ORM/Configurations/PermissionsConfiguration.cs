@@ -19,5 +19,8 @@ public class PermissionsConfiguration : IEntityTypeConfiguration<Permission>
             .HasOne(permission => permission.PermissionType)
             .WithMany(type => type.Permissions)
             .HasForeignKey(permission => permission.PermissionTypeId);
+
+        builder
+            .HasQueryFilter(permission => permission.IsDeleted == false);
     }
 }

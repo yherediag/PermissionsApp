@@ -10,5 +10,14 @@ public class PermissionsTypeConfiguration : IEntityTypeConfiguration<PermissionT
     {
         builder
             .ToTable("PermissionsType");
+
+        builder
+            .HasData([
+                new() { PermissionTypeId = 1, Description = "Leader" },
+                new() { PermissionTypeId = 2, Description = "Analyst" },
+                new() { PermissionTypeId = 3, Description = "Developer" },
+                new() { PermissionTypeId = 4, Description = "Tester" },
+                new() { PermissionTypeId = 99, Description = "Admin" },
+            ]);
     }
 }

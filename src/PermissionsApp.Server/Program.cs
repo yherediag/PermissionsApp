@@ -1,3 +1,4 @@
+using PermissionsApp.API.ExceptionHandlers;
 using PermissionsApp.API.HealthChecks;
 using PermissionsApp.Application;
 using PermissionsApp.Infraestructure;
@@ -25,6 +26,11 @@ public class Program
         builder.Services.AddHealthChecks();
         builder.Services.AddHealthChecks().AddCheck<SqlHealthCheck>(nameof(SqlHealthCheck));
 
+        builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
+        builder.Services.AddExceptionHandler<BadRequestExceptionHandler>();
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+        builder.Services.AddProblemDetails();
+
         var app = builder.Build();
 
         app.UseDefaultFiles();
@@ -41,6 +47,7 @@ public class Program
 
         app.UseAuthorization();
 
+        app.UseExceptionHandler();
 
         app.MapControllers();
 

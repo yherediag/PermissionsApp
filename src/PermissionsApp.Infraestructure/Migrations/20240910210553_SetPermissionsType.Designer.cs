@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PermissionsApp.Infraestructure.ORM;
 
@@ -11,9 +12,11 @@ using PermissionsApp.Infraestructure.ORM;
 namespace PermissionsApp.Infraestructure.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    partial class MainDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240910210553_SetPermissionsType")]
+    partial class SetPermissionsType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,10 +33,7 @@ namespace PermissionsApp.Infraestructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PermissionId"));
 
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset>("DeletedDate")
+                    b.Property<DateTimeOffset>("AtCreated")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("EmployeeName")
@@ -43,12 +43,6 @@ namespace PermissionsApp.Infraestructure.Migrations
                     b.Property<string>("EmployeeSurname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset>("LastModifiedDate")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<int>("PermissionTypeId")
                         .HasColumnType("int");

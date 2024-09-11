@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PermissionsApp.Domain.Entities;
+using PermissionsApp.Infraestructure.ORM.Interceptors;
 using System.Reflection;
 
 namespace PermissionsApp.Infraestructure.ORM;
@@ -11,6 +12,9 @@ public class MainDbContext(DbContextOptions<MainDbContext> options) : DbContext(
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
+
+        optionsBuilder.AddInterceptors(new AuditableEntityInterceptor(),
+                                       new SoftDeleteInterceptor());
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
