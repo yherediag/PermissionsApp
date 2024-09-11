@@ -1,27 +1,28 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PermissionsApp.Domain.Exceptions;
+using PermissionsApp.WebAPI.ExceptionHandlers;
 
-namespace PermissionsApp.Server.ExceptionHandlers;
+namespace PermissionsApp.WebAPI.ExceptionHandlers;
 
-public class NotFoundExceptionHandler(ILogger<NotFoundExceptionHandler> logger) : IExceptionHandler
+public class BadRequestExceptionHandler(ILogger<BadRequestExceptionHandler> logger) : IExceptionHandler
 {
-    private readonly ILogger<NotFoundExceptionHandler> _logger = logger;
+    private readonly ILogger<BadRequestExceptionHandler> _logger = logger;
 
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
-        if (exception is not NotFoundException notFoundException) 
+        if (exception is not BadRequestException badRequestException)
             return false;
 
-        _logger.LogError(notFoundException,
+        _logger.LogError(badRequestException,
                          "Exception occurred: {Message}",
-                         notFoundException.Message);
+                         badRequestException.Message);
 
         var problemDetails = new ProblemDetails
         {
-            Status = StatusCodes.Status404NotFound,
-            Title = "Not Found",
-            Detail = notFoundException.Message
+            Status = StatusCodes.Status400BadRequest,
+            Title = "Bad Request",
+            Detail = badRequestException.Message
         };
 
         httpContext.Response.StatusCode = problemDetails.Status.Value;

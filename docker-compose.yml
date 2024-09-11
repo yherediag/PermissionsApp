@@ -1,13 +1,35 @@
 services:
-  permissionsapp.server:
-    container_name: permissionsapp.server
-    image: ${DOCKER_REGISTRY-}permissionsappapi
+  # permissionsapp.server:
+  #   container_name: permissionsapp.server
+  #   image: ${DOCKER_REGISTRY-}permissionsappapi
+  #   build:
+  #     context: ./src/PermissionsApp.Server
+  #     dockerfile: Dockerfile
+  #   depends_on:
+  #     permissionsapp.database:
+  #       condition: service_healthy
+  #   networks:
+  #     - app-network
+
+  permissionsapp.webapi:
+    container_name: permissionsapp.webapi
+    image: ${DOCKER_REGISTRY-}permissionsappwebapi
     build:
-      context: ./src/PermissionsApp.Server
+      context: ./src/PermissionsApp.WebAPI
       dockerfile: Dockerfile
     depends_on:
       permissionsapp.database:
         condition: service_healthy
+    networks:
+      - app-network
+
+  permissionsapp.react:
+    container_name: permissionsapp.react
+    build:
+      context: ./src/PermissionsApp.React
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
     networks:
       - app-network
   

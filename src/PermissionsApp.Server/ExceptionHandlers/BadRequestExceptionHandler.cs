@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PermissionsApp.Domain.Exceptions;
-using PermissionsApp.Server.ExceptionHandlers;
 
 namespace PermissionsApp.Server.ExceptionHandlers;
 

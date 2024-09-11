@@ -2,8 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using PermissionsApp.Application;
 using PermissionsApp.Infraestructure;
 using PermissionsApp.Infraestructure.ORM;
+using PermissionsApp.WebAPI.ExceptionHandlers;
+using PermissionsApp.WebAPI.HealthChecks;
 
-namespace PermissionsApp.Server;
+namespace PermissionsApp.WebAPI;
 
 public class Program
 {

@@ -1,0 +1,6 @@
+@PermissionsApp.WebAPI_HostAddress = http://localhost:5223
+
+GET {{PermissionsApp.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

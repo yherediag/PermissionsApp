@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PermissionsApp.Domain.Exceptions;
+using PermissionsApp.WebAPI.ExceptionHandlers;
 
-namespace PermissionsApp.Server.ExceptionHandlers;
+namespace PermissionsApp.WebAPI.ExceptionHandlers;
 
 public class NotFoundExceptionHandler(ILogger<NotFoundExceptionHandler> logger) : IExceptionHandler
 {
