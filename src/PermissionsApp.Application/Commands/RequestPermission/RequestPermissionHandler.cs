@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using PermissionsApp.Domain.Entities;
+using PermissionsApp.Domain.Events;
 using PermissionsApp.Domain.Repositories;
 
 namespace PermissionsApp.Application.Commands.RequestPermission;
@@ -18,6 +19,8 @@ public class RequestPermissionHandler(IUnitOfWork uow,
     public async Task<int> Handle(RequestPermissionCommand request, CancellationToken cancellationToken)
     {
         var permission = _mapper.Map<Permission>(request);
+
+        permission.AddDomainEvent(new RequestPermissionEvent(permission));
 
         await _uow.Permissions.AddAsync(permission, cancellationToken);
         await _uow.SaveChangesAsync(cancellationToken);

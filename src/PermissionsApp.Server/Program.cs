@@ -1,20 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using PermissionsApp.API.ExceptionHandlers;
 using PermissionsApp.API.HealthChecks;
 using PermissionsApp.Application;
 using PermissionsApp.Infraestructure;
+using PermissionsApp.Infraestructure.ORM;
 
 namespace PermissionsApp.API;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
         builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
@@ -23,8 +24,9 @@ public class Program
         builder.Services.AddApplicationLayer();
         builder.Services.AddInfraestructureLayer(configuration);
 
-        builder.Services.AddHealthChecks();
-        builder.Services.AddHealthChecks().AddCheck<SqlHealthCheck>(nameof(SqlHealthCheck));
+        builder.Services.AddHealthChecks()
+            .AddCheck<SqlHealthCheck>(nameof(SqlHealthCheck))
+            .AddCheck<KafkaHealthCheck>(nameof(KafkaHealthCheck), tags: ["kafka"]);
 
         builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
         builder.Services.AddExceptionHandler<BadRequestExceptionHandler>();
@@ -32,6 +34,12 @@ public class Program
         builder.Services.AddProblemDetails();
 
         var app = builder.Build();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<MainDbContext>();
+            await dbContext.Database.MigrateAsync();
+        }
 
         app.UseDefaultFiles();
         app.UseStaticFiles();
@@ -44,12 +52,12 @@ public class Program
         }
 
         app.UseHttpsRedirection();
-
         app.UseAuthorization();
-
         app.UseExceptionHandler();
 
         app.MapControllers();
+
+        app.MapHealthChecks("/health");
 
         app.MapFallbackToFile("/index.html");
 

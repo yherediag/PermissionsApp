@@ -2,7 +2,7 @@
 
 namespace PermissionsApp.Domain.Entities;
 
-public class Permission : IAuditableEntity, ISoftDelete
+public class Permission : BaseEntity, IAuditableEntity, ISoftDelete
 {
     public int PermissionId { get; set; }
     public required string EmployeeName { get; set; }

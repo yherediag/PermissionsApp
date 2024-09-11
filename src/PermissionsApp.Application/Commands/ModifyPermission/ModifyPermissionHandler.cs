@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using PermissionsApp.Domain.Events;
 using PermissionsApp.Domain.Exceptions;
 using PermissionsApp.Domain.Repositories;
 
@@ -22,6 +23,8 @@ public class ModifyPermissionHandler(IUnitOfWork uow,
             ?? throw new NotFoundException($"The permission '{request.PermissionId}' was not found");
 
         _mapper.Map(request, permission);
+
+        permission.AddDomainEvent(new ModifyPermissionEvent(permission));
 
         _uow.Permissions.Update(permission);
 

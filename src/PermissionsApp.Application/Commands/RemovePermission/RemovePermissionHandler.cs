@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PermissionsApp.Domain.Events;
 using PermissionsApp.Domain.Exceptions;
 using PermissionsApp.Domain.Repositories;
 
@@ -14,6 +15,8 @@ public class RemovePermissionHandler(IUnitOfWork uow) : IRequestHandler<RemovePe
     {
         var permission = await _uow.Permissions.GetByIdAsync(request.PermissionId, cancellationToken)
             ?? throw new NotFoundException($"The permission '{request.PermissionId}' was not found");
+
+        permission.AddDomainEvent(new RemovePermissionEvent(permission));
 
         _uow.Permissions.Delete(permission);
 
