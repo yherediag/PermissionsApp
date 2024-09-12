@@ -9,11 +9,20 @@ public class PermissionsRepository(MainDbContext dbContext) : IPermissionsReposi
 {
     private readonly DbSet<Permission> Permissions = dbContext.Set<Permission>();
 
-    public async Task<IEnumerable<Permission>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<(IEnumerable<Permission> Permissions, int TotalCount)> GetAllAsync(int pageNumber,
+                                                                                         int pageSize,
+                                                                                         CancellationToken cancellationToken)
     {
-        return await Permissions
+        var query = Permissions.AsQueryable();
+
+        var totalCount = await query.CountAsync(cancellationToken);
+        var permissions = await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
             .Include(permission => permission.PermissionType)
             .ToListAsync(cancellationToken);
+
+        return (permissions, totalCount);
     }
 
     public async Task<Permission?> GetByIdAsync(int permissionId, CancellationToken cancellationToken)

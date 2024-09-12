@@ -12,8 +12,10 @@ public record GetPermissionQuery(int PermissionId) : IRequest<GetPermissionDto>;
 public record GetPermissionDto(int PermissionId,
                                 string? EmployeeName,
                                 string? EmployeeSurname,
-                                string? PermissionType,
-                                DateTimeOffset Created);
+                                int? PermissionTypeId,
+                                string? PermissionTypeDescription,
+                                DateTimeOffset Created,
+                                DateTimeOffset LastModified);
 
 public class GetPermissionHandler(IUnitOfWork uow,
                                   IMapper mapper,

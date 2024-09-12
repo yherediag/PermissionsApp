@@ -18,9 +18,9 @@ namespace PermissionsApp.WebAPI.Controllers
         [HttpGet(Name = nameof(GetPermissions))]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetPermissionDto>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetPermissions()
+        public async Task<IActionResult> GetPermissions([FromQuery] GetPermissionsQuery query)
         {
-            var permissionsDto = await _mediator.Send(new GetPermissionsQuery());
+            var permissionsDto = await _mediator.Send(query);
 
             return Ok(permissionsDto);
         }

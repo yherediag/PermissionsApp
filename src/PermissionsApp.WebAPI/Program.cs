@@ -32,6 +32,17 @@ public class Program
         builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
         builder.Services.AddProblemDetails();
 
+        builder.Services.AddCors(opt =>
+        {
+            opt.AddDefaultPolicy(builder =>
+            {
+                builder
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin();
+            });
+        });
+
         var app = builder.Build();
 
         using (var scope = app.Services.CreateScope())
@@ -51,6 +62,9 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseCors();
+
         app.UseAuthorization();
         app.UseExceptionHandler();
 

@@ -4,27 +4,29 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
+EXPOSE 5000
+EXPOSE 5001
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/PermissionsApp.WebAPI/PermissionsApp.WebAPI.csproj", "src/PermissionsApp.WebAPI/"]
-COPY ["src/PermissionsApp.Infraestructure/PermissionsApp.Infraestructure.csproj", "src/PermissionsApp.Infraestructure/"]
-COPY ["src/PermissionsApp.Application/PermissionsApp.Application.csproj", "src/PermissionsApp.Application/"]
-COPY ["src/PermissionsApp.Domain/PermissionsApp.Domain.csproj", "src/PermissionsApp.Domain/"]
-RUN dotnet restore "./src/PermissionsApp.WebAPI/PermissionsApp.WebAPI.csproj"
+
+COPY ["PermissionsApp.WebAPI/PermissionsApp.WebAPI.csproj", "PermissionsApp.WebAPI/"]
+COPY ["PermissionsApp.Infraestructure/PermissionsApp.Infraestructure.csproj", "PermissionsApp.Infraestructure/"]
+COPY ["PermissionsApp.Application/PermissionsApp.Application.csproj", "PermissionsApp.Application/"]
+COPY ["PermissionsApp.Domain/PermissionsApp.Domain.csproj", "PermissionsApp.Domain/"]
+
+RUN dotnet restore "PermissionsApp.WebAPI/PermissionsApp.WebAPI.csproj"
+
 COPY . .
-WORKDIR "/src/src/PermissionsApp.WebAPI"
-RUN dotnet build "./PermissionsApp.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/PermissionsApp.WebAPI"
+RUN dotnet build "PermissionsApp.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./PermissionsApp.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "PermissionsApp.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final

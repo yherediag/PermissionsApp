@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using PermissionsApp.Application.Queries.GetPermissions;
 using PermissionsApp.Domain.Entities;
 
 namespace PermissionsApp.Application.Queries.GetPermission;
@@ -18,8 +17,10 @@ public class GetPermissionMapping : Profile
             return new(source.PermissionId,
                        source.EmployeeName,
                        source.EmployeeSurname,
+                       source.PermissionType.PermissionTypeId,
                        source.PermissionType.Description,
-                       source.CreatedDate);
+                       source.CreatedDate,
+                       source.LastModifiedDate);
         }
     }
 }
