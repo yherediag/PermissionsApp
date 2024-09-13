@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PermissionsApp.Domain.Entities;
 using System.Reflection;
 
 namespace PermissionsApp.Infraestructure.ORM;
 
 public class MainDbContext(DbContextOptions<MainDbContext> options) : DbContext(options)
 {
-    public DbSet<Permission> Permissions => Set<Permission>();
-
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

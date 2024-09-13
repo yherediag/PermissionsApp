@@ -21,11 +21,11 @@ public class GetPermissionsHandler(IUnitOfWork uow,
 
     public async Task<GetPermissionsResponse> Handle(GetPermissionsQuery request, CancellationToken cancellationToken)
     {
-        var permissionsEntity = await _uow.Permissions.GetAllAsync(request.PageNumber, request.PageSize, cancellationToken);
+        var (Permissions, TotalCount) = await _uow.Permissions.GetAllAsync(request.PageNumber, request.PageSize, cancellationToken);
 
         await _bus.Publish(new EventMessage(Operation.GetPermissions));
 
-        var permissionsDto = _mapper.Map<IEnumerable<GetPermissionDto>>(permissionsEntity.Permissions);
-        return new GetPermissionsResponse(permissionsDto, permissionsEntity.TotalCount);
+        var permissionsDto = _mapper.Map<IEnumerable<GetPermissionDto>>(Permissions);
+        return new GetPermissionsResponse(permissionsDto, TotalCount);
     }
 }

@@ -16,7 +16,7 @@ namespace PermissionsApp.WebAPI.Controllers
         private readonly ISender _mediator = mediator;
 
         [HttpGet(Name = nameof(GetPermissions))]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetPermissionDto>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetPermissionsResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetPermissions([FromQuery] GetPermissionsQuery query)
         {
