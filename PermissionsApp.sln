@@ -7,19 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C1C4C843-9E0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B963FE8C-D132-4491-B907-CA4EB87F0D8F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\PermissionsApp.Application\Application.csproj", "{517B148F-CD9D-423F-91CB-1C125D70DE6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.Application", "src\PermissionsApp.Application\PermissionsApp.Application.csproj", "{517B148F-CD9D-423F-91CB-1C125D70DE6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infraestructure", "src\PermissionsApp.Infraestructure\Infraestructure.csproj", "{0389788A-EADB-4492-B49D-7E5C7384E7D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.Infraestructure", "src\PermissionsApp.Infraestructure\PermissionsApp.Infraestructure.csproj", "{0389788A-EADB-4492-B49D-7E5C7384E7D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\PermissionsApp.Domain\Domain.csproj", "{324C0AD7-AE3F-46C9-B9F0-DD1E3B3BA107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.Domain", "src\PermissionsApp.Domain\PermissionsApp.Domain.csproj", "{324C0AD7-AE3F-46C9-B9F0-DD1E3B3BA107}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "tests\PermissionsApp.UnitTests\UnitTests.csproj", "{99EEC0B7-598E-4F76-84EF-7F5C944491B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.UnitTests", "tests\PermissionsApp.UnitTests\PermissionsApp.UnitTests.csproj", "{99EEC0B7-598E-4F76-84EF-7F5C944491B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "tests\PermissionsApp.IntegrationTests\IntegrationTests.csproj", "{88AC1E03-793F-4871-95DD-7008F4CB16AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.IntegrationTests", "tests\PermissionsApp.IntegrationTests\PermissionsApp.IntegrationTests.csproj", "{88AC1E03-793F-4871-95DD-7008F4CB16AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\PermissionsApp.Server\API.csproj", "{DA16E19D-2008-409F-9FA0-A724B6E3252B}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{622FAF70-27F4-44B4-96B1-63AB7725EE24}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "client", "src\permissionsapp.client\client.esproj", "{49838C9B-EEF4-42AB-B765-5E99291A48BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionsApp.WebAPI", "src\PermissionsApp.WebAPI\PermissionsApp.WebAPI.csproj", "{9305BA75-55E9-4116-99C2-FE976794F513}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,16 +47,14 @@ Global
 		{88AC1E03-793F-4871-95DD-7008F4CB16AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88AC1E03-793F-4871-95DD-7008F4CB16AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88AC1E03-793F-4871-95DD-7008F4CB16AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA16E19D-2008-409F-9FA0-A724B6E3252B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA16E19D-2008-409F-9FA0-A724B6E3252B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA16E19D-2008-409F-9FA0-A724B6E3252B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA16E19D-2008-409F-9FA0-A724B6E3252B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49838C9B-EEF4-42AB-B765-5E99291A48BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49838C9B-EEF4-42AB-B765-5E99291A48BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49838C9B-EEF4-42AB-B765-5E99291A48BF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{49838C9B-EEF4-42AB-B765-5E99291A48BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49838C9B-EEF4-42AB-B765-5E99291A48BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49838C9B-EEF4-42AB-B765-5E99291A48BF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{622FAF70-27F4-44B4-96B1-63AB7725EE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{622FAF70-27F4-44B4-96B1-63AB7725EE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{622FAF70-27F4-44B4-96B1-63AB7725EE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{622FAF70-27F4-44B4-96B1-63AB7725EE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9305BA75-55E9-4116-99C2-FE976794F513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9305BA75-55E9-4116-99C2-FE976794F513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9305BA75-55E9-4116-99C2-FE976794F513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9305BA75-55E9-4116-99C2-FE976794F513}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,8 +65,7 @@ Global
 		{324C0AD7-AE3F-46C9-B9F0-DD1E3B3BA107} = {C1C4C843-9E06-4927-87C3-918DAED462A3}
 		{99EEC0B7-598E-4F76-84EF-7F5C944491B5} = {B963FE8C-D132-4491-B907-CA4EB87F0D8F}
 		{88AC1E03-793F-4871-95DD-7008F4CB16AD} = {B963FE8C-D132-4491-B907-CA4EB87F0D8F}
-		{DA16E19D-2008-409F-9FA0-A724B6E3252B} = {C1C4C843-9E06-4927-87C3-918DAED462A3}
-		{49838C9B-EEF4-42AB-B765-5E99291A48BF} = {C1C4C843-9E06-4927-87C3-918DAED462A3}
+		{9305BA75-55E9-4116-99C2-FE976794F513} = {C1C4C843-9E06-4927-87C3-918DAED462A3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BE7D0646-56FF-4C61-B3AE-6E68BE8B8B82}
