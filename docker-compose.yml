@@ -3,7 +3,7 @@ services:
     container_name: permissionsapp.webapi
     image: ${DOCKER_REGISTRY-}permissionsappwebapi
     build:
-      context: ./src
+      context: ./BackEnd/src
       dockerfile: PermissionsApp.WebAPI/Dockerfile
     depends_on:
       permissionsapp.database:
@@ -14,12 +14,12 @@ services:
   permissionsapp.react:
     container_name: permissionsapp.react
     build:
-      context: ./src/PermissionsApp.React
+      context: ./FrontEnd/src/PermissionsApp.React
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - ./src/PermissionsApp.React:/app
+      - ./FrontEnd/src/PermissionsApp.React:/app
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true

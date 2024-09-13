@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.UnitTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsApp.IntegrationTests", "tests\PermissionsApp.IntegrationTests\PermissionsApp.IntegrationTests.csproj", "{88AC1E03-793F-4871-95DD-7008F4CB16AD}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{622FAF70-27F4-44B4-96B1-63AB7725EE24}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "..\docker-compose.dcproj", "{622FAF70-27F4-44B4-96B1-63AB7725EE24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionsApp.WebAPI", "src\PermissionsApp.WebAPI\PermissionsApp.WebAPI.csproj", "{9305BA75-55E9-4116-99C2-FE976794F513}"
 EndProject
